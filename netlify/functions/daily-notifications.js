@@ -1,24 +1,20 @@
 exports.handler = async function(event, context) {
   try {
-    console.log('🚀 Starting daily AI notifications...');
+    // Get custom message from your app's AI
+    const { message, title } = JSON.parse(event.body || '{}');
     
-    const messages = [
-      "Stay strong! Your journey to self-control matters every day. 💪",
-      "Remember why you started this. You're building a better version of yourself! 🌟",
-      "Every small victory counts. Keep that streak going! 🔥"
-    ];
+    const finalMessage = message || "Stay strong! You've got this! 💪";
+    const finalTitle = title || "NoMore Daily Motivation";
     
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    console.log('📢 Sending push notification:', finalTitle, '-', finalMessage);
     
-    console.log('📢 AI Message:', randomMessage);
-    
-    // TODO: Add actual push notification code here later
+    // TODO: Send actual push notification to all users
     
     return {
       statusCode: 200,
       body: JSON.stringify({ 
         success: true, 
-        message: 'AI Notification: ' + randomMessage 
+        message: 'Push notification sent: ' + finalMessage
       })
     };
     
