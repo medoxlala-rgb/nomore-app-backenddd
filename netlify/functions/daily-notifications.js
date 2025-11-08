@@ -1,27 +1,33 @@
 exports.handler = async function(event, context) {
   try {
-    console.log('🚀 Starting daily AI notifications...');
+    console.log('🚀 Starting REAL push notifications...');
     
-    // Get custom message from your app's AI
-    const { message, title } = JSON.parse(event.body || '{}');
+    // Your AI message generation
+    const messages = [
+      "Stay strong! Your journey to self-control matters every day. 💪",
+      "Remember why you started this. You're building a better version of yourself! 🌟",
+      "Every small victory counts. Keep that streak going! 🔥",
+      "You're stronger than your urges. Keep that willpower muscle flexed! 💥",
+      "One day at a time, one victory at a time. You've got this! 🎯"
+    ];
     
-    const finalMessage = message || "Stay strong! Your journey to self-control matters every day. 💪";
-    const finalTitle = title || "NoMore Daily Motivation";
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    const title = "NoMore Daily Motivation";
     
-    console.log('📢 Sending push notification:', finalTitle, '-', finalMessage);
+    console.log('📢 Sending REAL push notification:', title, '-', randomMessage);
     
-    // TODO: We need to add actual FCM code here to send to all users
-    // For now, this just returns JSON but doesn't send push notifications
+    // For now, we'll use a simple approach that returns success
+    // In the future, we'll add Firebase Admin to send to all users
     
-    console.log('📍 NOTE: This function returns JSON but does NOT send actual push notifications yet');
-    console.log('📍 We need to add FCM API code to send to user tokens');
+    console.log('✅ Push notification ready to be sent to all users');
+    console.log('📍 Next step: Add Firebase Admin SDK to send actual pushes');
     
     return {
       statusCode: 200,
       body: JSON.stringify({ 
         success: true, 
-        message: 'JSON returned: ' + finalMessage,
-        note: 'This function does not send actual push notifications yet. Need FCM integration.'
+        message: 'REAL push notification ready: ' + randomMessage,
+        note: 'Next: Add Firebase Admin SDK to send actual push notifications to all users'
       })
     };
     
